@@ -16,15 +16,33 @@ internal class GameObject
 
         DrawGameObject(hostingSurface);
     }
-    public void Move(Point newPosition, IScreenSurface screenSurface)
+    public bool Move(Point newPosition, Map map)
     {
-        _mapAppearance.CopyAppearanceTo(screenSurface.Surface[Position]);
+        if (!map.SurfaceObject.IsValidCell(newPosition.X, newPosition.Y)) return false;
 
-        screenSurface.Surface[newPosition].CopyAppearanceTo(_mapAppearance);
+        if (map.TryGetMapObject(newPosition, out GameObject? foundObject))
+        {
+            if (!foundObject.Touched(this, map))
+                return false;
+        }
+
+        _mapAppearance.CopyAppearanceTo(map.SurfaceObject.Surface[Position]);
+
+        map.SurfaceObject.Surface[newPosition].CopyAppearanceTo(_mapAppearance);
 
         Position = newPosition;
-        DrawGameObject(screenSurface);
+        DrawGameObject(map.SurfaceObject);
+
+        return true;
     }
+
+    public virtual bool Touched(GameObject source, Map map)
+    {
+        return false;
+    }
+
+    public void RestoreMap(Map map) =>
+    _mapAppearance.CopyAppearanceTo(map.SurfaceObject.Surface[Position]);
 
     private void DrawGameObject(IScreenSurface screenSurface)
     {
