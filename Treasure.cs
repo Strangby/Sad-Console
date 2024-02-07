@@ -3,7 +3,7 @@
 internal class Treasure : GameObject
 {
     public Treasure(Point position, IScreenSurface hostingSurface)
-    : base(new ColoredGlyph(Color.Yellow, Color.Black, 'v'), position, hostingSurface)
+    : base(new ColoredGlyph(Color.Yellow, Color.Black, 'T'), position, hostingSurface)
     {
 
     }
