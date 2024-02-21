@@ -21,9 +21,13 @@ internal class Map
 
         UserControlledObject = new GameObject(new ColoredGlyph(Color.White, Color.Black, 2), _mapSurface.Surface.Area.Center, _mapSurface);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 50; i++)
         {
             CreateTreasure();
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
             CreateMonster();
         }
     }
