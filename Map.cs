@@ -29,6 +29,7 @@ internal class Map
         for (int i = 0; i < 5; i++)
         {
             CreateMonster();
+            CreateWall();
         }
     }
 
@@ -96,6 +97,21 @@ internal class Map
 
             Monster monster = new Monster(randomPosition, _mapSurface);
             _mapObjects.Add(monster);
+            break;
+        }
+    }
+    private void CreateWall()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
+            Point randomPosition = new Point(Game.Instance.Random.Next(0, _mapSurface.Surface.Width),
+                                                Game.Instance.Random.Next(0, _mapSurface.Surface.Height));
+
+            bool foundObject = _mapObjects.Any(obj => obj.Position == randomPosition);
+            if (foundObject) continue;
+
+            Wall wall = new Wall(randomPosition, _mapSurface);
+            _mapObjects.Add(wall);
             break;
         }
     }
