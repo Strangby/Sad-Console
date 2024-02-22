@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading;
 
 namespace SadConsoleGame;
 
@@ -6,11 +8,14 @@ internal class Map
 {
     private List<GameObject> _mapObjects;
     private ScreenSurface _mapSurface;
+    private string monster;
 
     public IReadOnlyList<GameObject> GameObjects => _mapObjects.AsReadOnly();
     public ScreenSurface SurfaceObject => _mapSurface;
     public GameObject UserControlledObject { get; set; }
 
+    public string[] monster_lista = new string[1000];
+    
     public Map(int mapWidth, int mapHeight)
     {
         _mapObjects = new List<GameObject>();
@@ -26,9 +31,14 @@ internal class Map
             CreateTreasure();
         }
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
             CreateMonster();
+            monster_lista.Append(monster);
+        }
+
+        for (int i = 0; i < 200; i++)
+        {
             CreateWall();
         }
     }
