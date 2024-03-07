@@ -8,7 +8,7 @@ internal class RootScreen : ScreenObject
 
     public RootScreen()
     {
-        _map = new Map(Game.Instance.ScreenCellsX, Game.Instance.ScreenCellsY - 5);
+        _map = new Map(Game.Instance.ScreenCellsX, Game.Instance.ScreenCellsY);
         Children.Add(_map.SurfaceObject);
     }
     public override bool ProcessKeyboard(Keyboard keyboard)
