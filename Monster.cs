@@ -10,5 +10,5 @@ internal class Monster : GameObject
     public override bool Touched(GameObject source, Map map)
     {
         return base.Touched(source, map);
-    }
-}
+    }  
+}                                                                                                      
