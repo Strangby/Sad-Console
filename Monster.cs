@@ -11,4 +11,4 @@ internal class Monster : GameObject
     {
         return base.Touched(source, map);
     }  
-}                                                                                                      
+}
