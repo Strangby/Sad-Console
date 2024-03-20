@@ -8,13 +8,13 @@ internal class Map
 {
     private List<GameObject> _mapObjects;
     private ScreenSurface _mapSurface;
-    private string monster;
+    private string trap;
 
     public IReadOnlyList<GameObject> GameObjects => _mapObjects.AsReadOnly();
     public ScreenSurface SurfaceObject => _mapSurface;
     public GameObject UserControlledObject { get; set; }
 
-    public string[] monster_lista = new string[1000];
+    public string[] trap_lista = new string[1000];
     
     public Map(int mapWidth, int mapHeight)
     {
@@ -33,8 +33,8 @@ internal class Map
 
         for (int i = 0; i < 10; i++)
         {
-            CreateMonster();
-            monster_lista.Append(monster);
+            CreateTrap();
+            trap_lista.Append(trap);
         }
 
         for (int i = 0; i < 200; i++)
@@ -95,7 +95,7 @@ internal class Map
             break;
         }
     }
-    private void CreateMonster()
+    private void CreateTrap()
     {
         for (int i = 0; i < 1000; i++)
         {
@@ -105,8 +105,8 @@ internal class Map
             bool foundObject = _mapObjects.Any(obj => obj.Position == randomPosition);
             if (foundObject) continue;
 
-            Monster monster = new Monster(randomPosition, _mapSurface);
-            _mapObjects.Add(monster);
+            Trap trap = new Trap(randomPosition, _mapSurface);
+            _mapObjects.Add(trap);
             break;
         }
     }
